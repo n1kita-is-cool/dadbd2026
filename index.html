@@ -298,7 +298,7 @@
 
         const colors = ['#ff6f00', '#ff9800', '#ffa726', '#ffb74d', '#ff7043'];
         
-        // Exact matching extensions for photos folder (.JPG vs .jpg)
+        // Photos list with correct upper/lower case extensions
         const photoUrls = [
             'photos/photo1.JPG',
             'photos/photo2.JPG',
@@ -328,7 +328,7 @@
             const group = document.createElement('div');
             group.classList.add('photo-balloon-group');
 
-            // Pick random colors and a random photo from the 5 available
+            // Pick random colors and a random photo
             const color1 = colors[Math.floor(Math.random() * colors.length)];
             const color2 = colors[Math.floor(Math.random() * colors.length)];
             const randomPhoto = photoUrls[Math.floor(Math.random() * photoUrls.length)];
@@ -343,8 +343,10 @@
                 </div>
             `;
 
-            // Random horizontal placement across screen width (5% to 75%)
-            group.style.left = `${5 + Math.random() * 75}%`;
+            // Random horizontal placement across full screen width (2% to 88%)
+            // Uses calc() to ensure wider photo frames don't overflow off the right side
+            const randomPercent = 2 + Math.random() * 86;
+            group.style.left = `calc(${randomPercent}% - 20px)`;
 
             // Random floating duration between 10s and 14s
             const duration = 10 + Math.random() * 4;
